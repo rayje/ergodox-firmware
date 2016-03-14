@@ -51,16 +51,18 @@ CURRENT_DATE=$(gdate --rfc-3339 s)
 GIT_COMMIT_DATE=$(git log -n 1 --pretty --date=iso | grep 'Date' | cut -c 9- )
 GIT_COMMIT_ID=$(git log -n 1 | grep 'commit' | cut -c 8-)
 
-build-scripts/gen-ui-info.py \
+cd $CUSTOM
+
+./build-scripts/gen-ui-info.py \
     --current-date "$CURRENT_DATE" \
     --git-commit-date "$GIT_COMMIT_DATE" \
     --git-commit-id "$GIT_COMMIT_ID" \
-    --map-file-path 'src/firmware.map' \
-    --source-code-path 'src' \
-    --matrix-file-path 'src/keyboard/ergodox/matrix.h' \
-    --layout-file-path 'src/keyboard/ergodox/layout/default--layout.c' > $CUSTOM/firmware--ui-info.json
+    --map-file-path "src/firmware.map" \
+    --source-code-path "src" \
+    --matrix-file-path "src/keyboard/ergodox/matrix.h" \
+    --layout-file-path "src/keyboard/ergodox/layout/default--layout.c" > firmware--ui-info.json
 
-build-scripts/gen-layout.py --ui-info-file $CUSTOM/firmware--ui-info.json > $CUSTOM/firmware--layout.html
+./build-scripts/gen-layout.py --ui-info-file firmware--ui-info.json > firmware--layout.html
 
 
 echo "--------------------------------------------------"
