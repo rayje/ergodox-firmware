@@ -110,8 +110,6 @@ def main():
             replace = ''
             if press == 'kbfun_transparent':
                 replace = ''
-            # elif press == 'kbfun_layer_pop_all':
-            #     print (code, press, release)
             elif press == 'kbfun_shift_press_release':
                 replace = keycode_to_string.get(code, '[n/a]')[-1:]
             elif press == 'kbfun_jump_to_bootloader':
